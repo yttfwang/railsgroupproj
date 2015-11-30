@@ -1,0 +1,82 @@
+JSON API
+
+json
+key value pairs + arrays
+values can be strings, #'s, bools and null
+
+namespaces
+organization of controllers within folders..
+ex: ...
+
+render
+a controller method that is explicitly called
+render json: @users
+
+rails new json-api
+
+one model and one controller
+
+rails model User name:string email:string
+rake db:migrate
+
+make new folder in controllers called api
+in that folder make another folder called v1
+
+create controller for users.. way to access users
+users_controller.rb
+class UsersController < ApplicationController
+  def index
+    users = User.all
+    render json: users
+  end
+end
+
+now i should route this controller method
+in config routes.rb
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index]
+      // only allow index method to happen
+    end
+  end
+
+class Api::V1::UsersController < ApplicationController
+
+rails c
+User.create name: "qwe", email: "wer@rty.com"
+User.create name: "zxc", email: dfg@fgh.com"
+User.all
+
+curl --> http request to server
+command line tool
+curl -L http://railsdecal.com
+rails s
+curl localhost:3000/api/v1/users
+shows all the html & js?
+
+class Api::V1::UsersController < ApplicationController
+  // prevents bad posts requests to certain urls to making those requests
+  skip_before_filter :verify_authenticity_token
+
+  def index
+    users = Users.all
+    render json: users
+  end
+
+  def create
+    user = User.new user_params
+    user.save
+    render json: user
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email)
+  end
+end
+
+googled something for curl.. post request curl?
+
+in routes.rb
+[:index, :create]

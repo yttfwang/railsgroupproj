@@ -1,0 +1,118 @@
+rmodel associations
+-> one model can 'belong to' another
+one mode can 'have many' of another
+
+belongs_to in Pokemon
+has_many in User
+
+// in rails
+makes sense to ask a user for his/her Pokemon
+@user.pokemons # [Pokemons(id:2), ...]
+
+also makes sense to ask a pokemon for its user
+@pokemon.user # User(id:1)
+
+rubyonrails.org/associations_basics.html
+you get a bunch of methods for :has_many and :belongs_to
+@user.pokemons
+@user.pokemons.buid(...)
+@user.pokemons.size
+
+
+migration error? rake db:migrate
+
+rake db:seed
+
+user.rb
+class User < ActiveRecord::Base
+  has_many :pokemons
+end
+
+rails g migration AddUserIdToPokemon
+don't change old migration or touch schema file
+
+rake db:rollback
+// rolls back previous migration
+
+rails g migration AddUserIdToPokemon
+
+migration file..
+class AddUserIdToPokemon < ActiveRecord::Migration
+  def change
+    add_column :pokemons, :user_id, :integer
+  end
+end
+
+rake db:migrate
+now it's done correctly
+
+rails g migration AddUserIdToPokemon2 user_id:integer
+rails d migration AddUserIdToPokemon2 user_id:integer
+
+rails c
+Pokemon
+// we see that there's an user id
+
+
+user.rb
+class User < ActiveRecord::Base
+  has_many :pokemons // plural
+end
+
+pokemon.rb
+class Pokemon < ActiveRecord::Base
+  belongs_to :user // singular
+end
+
+reload!
+
+USER
+index.html.erb
+<div class="row marketing">
+  <div class="col-lg-6">
+    <% @users.each do |user| %>
+      <h3><%= user.name %></h3>
+      <p>Badges: <%= user.num_badges %></p>
+      <% user.pokemons.each do |pokemon| %>
+        <%= pokemon.name %>
+        Level: <%= pokemon.level %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+refresh /users and nothing changes
+didn't set user id to any Pokemon
+so no pokemon belongs to anyone
+
+in seeds.rb
+add user_id: User.first.id
+
+rake db:setup // drops database and gets rid of it.. restarts
+
+USER
+index.html.erb
+<div class="row marketing">
+  <div class="col-lg-6">
+    <% @users.each do |user| %>
+      <h3><%= user.name %></h3>
+      <p>Badges: <%= user.num_badges %></p>
+      <% user.pokemons.each do |pokemon| %>
+        <p><%= pokemon.name %></p>
+        <p>Level: <%= pokemon.level %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+POKEMON
+index.html.erb
+<div class="row marketing">
+  <div class="col-lg-6">
+    <% @pokemons.each do |pokemon| %>
+      <h4><%= pokemon.name %>, Level <% pokemon.level %></h4>
+      <p><%= pokemon.description %></p>
+      <p>Trainer: <%= pokemon.user.name %></p>
+    <% end %>
+  </div>
+</div>
