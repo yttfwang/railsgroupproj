@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   belongs_to :group
   has_one :status
+  after_create :create_status
   geocoded_by :address
   after_validation :geocode
 end
