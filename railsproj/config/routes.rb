@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 	end
   	root to: 'visitors#index'
   	devise_for :users
+  	resources :groups do
+  		resources :users
+  	end
   	resources :users do
   		resource :status
   		#delete if want to work

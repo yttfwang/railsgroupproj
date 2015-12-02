@@ -16,3 +16,6 @@
 
 User.create(name: 'Kevin', email: 'kevin@example.com', password: 'password', address: '2620 Regent St. Berkeley, CA 94704').create_status(description: 'Im kevin')
 User.create(name: 'Bob', email: 'bob@example.com', password: 'password', address: 'Soda Hall Berkeley, CA').create_status(description: 'Im bob')
+
+Group.create(name: 'First Group', description: 'First group of homies')
+Group.create(name: 'Second Group', description: 'Second group of homies')
