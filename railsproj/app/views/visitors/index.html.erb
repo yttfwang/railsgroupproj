@@ -7,13 +7,35 @@
     <link href="docs/assets/stylesheets/flat-ui.css" rel="stylesheet">
     <link href="docs/assets/stylesheets/demo.css" rel="stylesheet">
     <link href="docs/assets/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<!-- Firebase -->
+		<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
   </head>
   <body>
 <div class="row">
-    <div class="form-group landing">
-      <input type="text" value="" placeholder="What are you up to?" class="form-control" />
-      <a href="#" class="btn btn-block btn-lg btn-primary">Post</a>
-    </div>
+  <div class="form-group landing">
+    <input type="text" value="" placeholder="What are you up to?" class="form-control message" />
+    <p class="enter-text">Press Enter</p>
+    <div class="chats" id="chats"></div>
+  </div>
 </div>
+
+<script>
+  var myDataRef = new Firebase("https://infectedchats.firebaseio.com/");
+
+  // attach keypress handler to message input
+  $('.message').keypress(function(event) {
+    // if user pressed enter
+    if (event.keyCode === 13) {
+      var userMessage = $('.message').val(); // extract user message
+
+      // construct div with user name and messange and append to chats container
+      $('<div/>').text("Update: " + userMessage).appendTo($('.chats'));
+      myDataRef.push({ message: userMessage });
+    }
+  });
+
+</script>
 </body>
 </html>
