@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <h3 class="groups-title">Groups</h3>
+      <table class="table">
+        <tbody>
+          <% @groups.each do |group| %>
+            <tr>
+              <%= render group %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

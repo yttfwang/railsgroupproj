@@ -1,0 +1,9 @@
+<h3>Group</h3>
+<p>Name: <%= @group.name if @group.name %></p>
+<p>Email: <%= @group.description if @group.description %></p>
+<p>Members:</p>
+<% if @users %>
+	<% @users.each do |user| %>
+    	<%= render user %>
+	<% end %> 
+<% end %>
