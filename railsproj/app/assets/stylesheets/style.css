@@ -1,0 +1,84 @@
+/* Landing */
+
+.landing {
+  margin-top: 60px;
+}
+
+.sign-up-header, .users-title, table, .edit-title {
+  text-align: center;
+  color: #E8664F;
+}
+
+.form-actions {
+  text-align: center;
+}
+
+.sign-up-button {
+  background-color: #E8664F;
+  width: 150px;
+  margin-top: 20px;
+}
+
+.sign-up-button:hover {
+  opacity: 0.8;
+}
+
+.chats {
+  -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+   outline:0;
+   padding: 15px;
+   height: 25px;
+   width: 275px;
+   margin-top: 15px;
+   float: left;
+}
+
+.enter-text {
+  color: #E8664F;
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Home */
+
+.users-title {
+  margin-top: 40px;
+}
+
+.gmap {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+  border: 3px solid #E8664F;
+}
+
+.table {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 500px;
+}
+
+/* Edit User */
+
+.update-action {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.update-button {
+  color: #E8664F;
+}
+
+/* About */
+
+.about-title {
+  margin-top: 40px;
+  color: #E8664F;
+}
+
+.about-title, .about-text {
+  text-align: center;
+}
