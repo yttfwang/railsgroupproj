@@ -18,6 +18,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   #experiment
   #testing
   def update
@@ -35,5 +39,13 @@ class UsersController < ApplicationController
     
   end
 
+
+  def create
+    @user = User.create(user_params)
+  end
+  private
+    def user_params
+      params.require(:user).permit(:photo)
+    end
 
 end
